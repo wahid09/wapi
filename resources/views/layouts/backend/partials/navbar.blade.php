@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light shadow-sm p-3 mb-5 bg-white rounded fixed">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -119,14 +119,23 @@
       <li class="nav-item dropdown">
         <a class="nav-link user-image" data-toggle="dropdown" href="#">
           <img src="{{asset('admin/assets/img/user.png')}}" class="img-circle" alt="User Image" width="80px;">&nbsp;&nbsp;
-          <p class="user-text">Wahid Ullah</p>
+          <p class="user-text">{{Auth::user()->name}}</p>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">Profile</span>
+          <span class="dropdown-header">Profile Mangement</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          {{-- <a href="#" class="dropdown-item">
             <i class="fas fa-sign-out-alt mr-2"></i>Logout
-          </a>
+          </a> --}}
+          <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt mr-2"></i> &nbsp;{{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
           
         </div>
       </li>
