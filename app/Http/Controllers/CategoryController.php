@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categoryList = Category::latest()->get();
+        return response()->json(['categoryList'=> $categoryList], 200);
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +37,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255|unique:categories',
+            'name_bn'=> 'required|string|max:255',
+            'description'=> 'required|string|max:1200',
+            'description_bn'=> 'required|string|max:1200'
+        ]);
+
+        //$name = $request['name'];
+
+        return Category::create([
+            'name' => $request['name'],
+            'slug' => Str::slug($request['name']),
+            'name_bn'=> $request['name_bn'],
+            'description'=> $request['description'],
+            'description_bn'=> $request['description_bn'],
+            'isActive'=> $request->filled('isActive')
+        ]);
     }
 
     /**

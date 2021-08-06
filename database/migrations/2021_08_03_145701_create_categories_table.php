@@ -22,7 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->text('description_bn')->nullable();
             $table->tinyInteger('isActive')->default(0);
             $table->string('image')->nullable();
-            $table->dropSoftDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -36,4 +36,5 @@ class CreateCategoriesTable extends Migration
     {
         Schema::dropIfExists('categories');
     }
+    
 }

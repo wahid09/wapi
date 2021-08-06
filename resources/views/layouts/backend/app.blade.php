@@ -30,6 +30,27 @@
     white-space: normal;
     font-size: 16px;
 }
+.content-header {
+    padding: 15px 0.5rem;
+    background:#F7F9FA;
+    padding-top: 39px;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+.content-wrapper {
+    background-color:#EAEDF0;
+    color:black;
+}
+.card {
+    box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%), 0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+    border-width: 0;
+    transition: all .2s;
+}
+.fa, .fas {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 16px;
+}
 
   </style>
 </head>
@@ -81,4 +102,5 @@
 </div>
 <!-- ./js -->
 <script src="{{ asset('js/app.js') }}"></script>
+
 </html>
