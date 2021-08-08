@@ -46,10 +46,26 @@
     border-width: 0;
     transition: all .2s;
 }
-.fa, .fas {
+/* td >.fa, .fas {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     font-size: 16px;
+} */
+small, .small {
+    font-size: 100%;
+    font-weight: 400;
+}
+.custom-switch {
+    padding-left: 1.5rem; 
+}
+.custom-control {
+    position: relative;
+    z-index: 1;
+    display: block;
+    min-height: 1.44rem;
+    padding-left: 0.5rem;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
 }
 
   </style>
@@ -66,41 +82,15 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    {{-- <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div> --}}
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    {{-- <div class="content">
-      <div class="container-fluid">
-        
-        
-      </div><!-- /.container-fluid -->
-    </div> --}}
-    <admin-master></admin-master>
     
-    <!-- /.content -->
+    <admin-master></admin-master>
   </div>
-  <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
   @include('layouts.backend.partials.footer')
 </div>
 <!-- ./js -->
 <script src="{{ asset('js/app.js') }}"></script>
+</body>
 
 </html>

@@ -32,13 +32,37 @@ const Toast = Swal.mixin({
 
 window.Toast = Toast
 
+//Vue progressbar
+import VueProgressBar from 'vue-progressbar'
+const options = {
+  color: '#bffaf3',
+  failedColor: '#874b4b',
+  thickness: '5px',
+  transition: {
+    speed: '0.2s',
+    opacity: '0.6s',
+    termination: 300
+  },
+  autoRevert: true,
+  location: 'top',
+  inverse: false
+}
+
+Vue.use(VueProgressBar, options)
+
+//vue markdown editor
+
+import 'v-markdown-editor/dist/v-markdown-editor.css';
+
+import Editor from 'v-markdown-editor'
+Vue.use(Editor);
+
+
+//Vue Router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import { routes } from './routes'
-
-
-
 const router = new VueRouter({
     //mode: 'history',
     routes // short for `routes: routes`

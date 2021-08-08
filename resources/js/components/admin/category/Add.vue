@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
           <div class="col-sm-6">
-            <h3><i class="fas fa-sitemap"></i>&nbsp;&nbsp;Category management</h3>
+            <h3><i class="fas fa-sitemap"></i>&nbsp;&nbsp;Add New Category</h3>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -30,28 +30,32 @@
                                     <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">Name(English)</label>
-                                        <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Enter email">
-                                        <small v-if="form.errors.has('name')" v-html="form.errors.get('name')"></small>
+                                        <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Enter email" name="name">
+                                        <small v-if="form.errors.has('name')" v-html="form.errors.get('name')" class="red"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="name_bn">Name(Bangla)</label>
                                         <input v-model="form.name_bn" type="text" class="form-control" id="name_bn" placeholder="Category Name Bangla">
-                                        <small v-if="form.errors.has('name_bn')" v-html="form.errors.get('name_bn')"></small>
+                                        <small v-if="form.errors.has('name_bn')" v-html="form.errors.get('name_bn')" class="red"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Description(English)</label>
-                                        <textarea v-model="form.description" class="form-control"></textarea>
-                                        <small v-if="form.errors.has('description')" v-html="form.errors.get('description')"></small>
+                                        <!-- <textarea v-model="form.description" class="form-control"></textarea> -->
+                                        <markdown-editor v-model="form.description"></markdown-editor>
+                                        <small v-if="form.errors.has('description')" v-html="form.errors.get('description')" class="red"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="description_bn">Description(Bangla)</label>
-                                        <textarea v-model="form.description_bn" class="form-control"></textarea>
-                                        <small v-if="form.errors.has('description_bn')" v-html="form.errors.get('description_bn')"></small>
+                                        <!-- <textarea v-model="form.description_bn" class="form-control"></textarea> -->
+                                        <markdown-editor v-model="form.description_bn"></markdown-editor>
+                                        <small v-if="form.errors.has('description_bn')" v-html="form.errors.get('description_bn')" class="red"></small>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="description">Status</label>
-                                        <input v-model="form.isActive" type="checkbox" name="my-checkbox" checked data-bootstrap-switch>
-                                        <small v-if="form.errors.has('isActive')" v-html="form.errors.get('isActive')"></small>
+                                    <div class="form-group custom-switch">
+                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                        <input v-model="form.isActive" type="checkbox" class="custom-control-input" id="customSwitch1" name="isActive">
+                                        <label class="custom-control-label" for="customSwitch1">Status</label>
+                                        </div>
+                                        <small v-if="form.errors.has('isActive')" v-html="form.errors.get('isActive')" class="red"></small>
                                     </div>
                                     </div>
                                     <!-- /.card-body -->
@@ -91,6 +95,7 @@ export default {
     },
     methods:{
         createCategory(){
+            this.$Progress.start()
             this.form.post('category')
             .then((response)=>{
                 console.log(response);
@@ -100,7 +105,9 @@ export default {
                     icon: 'success',
                     title: 'Category added successfully'
                 })
+                this.$Progress.finish()
             }).catch((e)=> {
+                this.$Progress.fail()
                 console.log(e);
             });
             

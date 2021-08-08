@@ -44,7 +44,9 @@ class CategoryController extends Controller
             'description_bn'=> 'required|string|max:1200'
         ]);
 
-        //$name = $request['name'];
+        // $name = $request->filled('isActive')==1 ? 1 : 0;
+        // print_r($name);
+        // exit();
 
         return Category::create([
             'name' => $request['name'],
@@ -52,7 +54,7 @@ class CategoryController extends Controller
             'name_bn'=> $request['name_bn'],
             'description'=> $request['description'],
             'description_bn'=> $request['description_bn'],
-            'isActive'=> $request->filled('isActive')
+            'isActive'=> $request->filled('isActive')==1 ? 1 : 0,
         ]);
     }
 
@@ -75,7 +77,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return response()->json(['categoryById'=> $category], 200);
     }
 
     /**
@@ -87,7 +89,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        //return $request;
+        //exit();
+        $status = $request->filled('isActive')==1 ? 1 : 0;
+        return $category->update([
+            'name' => $request['name'],
+            'slug' => Str::slug($request['name']),
+            'name_bn'=> $request['name_bn'],
+            'description'=> $request['description'],
+            'description_bn'=> $request['description_bn'],
+            'isActive'=> $status,
+        ]);
     }
 
     /**
@@ -98,6 +110,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        return $category->delete();
     }
 }

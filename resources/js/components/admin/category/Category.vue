@@ -69,13 +69,12 @@
                                             <span class="badge badge-warning">Inactive</span>
                                             </td>
                                             <td>
-                                                <a class="" href="#"
-                                                    ><i
+                                                <router-link :to="`/edit_category/${categoryList.id}`" class=""><i
                                                         class="fas fa-edit blue"
                                                     ></i
-                                                ></a>
+                                                ></router-link>
                                                 |
-                                                <a href="#"
+                                                <a @click.prevent="categoryDelete(categoryList.id)"
                                                     ><i
                                                         class="fas fa-trash red"
                                                     ></i
@@ -122,7 +121,38 @@ export default {
             return this.$store.getters.categoryList
         }
     },
-    metods:{}
+    methods:{
+        categoryDelete(id){
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        //send request to the server
+                            axios.delete('category/'+id).then((response)=>{
+                            this.$store.dispatch("getCategoryList")
+                                Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                                )
+                            
+                            }).catch(()=>{
+                                Swal("Failed", "There was something wrong.", "warning");
+                            });
+                        }
+                        
+                    })
+
+                
+        }
+    }
 
 };
 </script>
