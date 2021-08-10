@@ -18,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 //Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
+
+Route::group(['prefix' => 'v1', 'namespace' => 'Admin\Api\v1'], function(){
+    Route::ApiResource('module', 'ModuleController');
+});
