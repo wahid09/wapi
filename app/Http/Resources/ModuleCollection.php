@@ -18,7 +18,7 @@ class ModuleCollection extends JsonResource
              'id' => $this->id,
              'name' => $this->name,
              'name_bn' => $this->name_bn,
-             'status'=>$this->isActive == 1 ? "Active" : "Inactive",
+             'status'=>$this->isActive,
              'created' => \Carbon\Carbon::parse($this->created_at)->format('M D Y'),
         ];
     }

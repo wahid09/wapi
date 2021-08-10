@@ -62,9 +62,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/category" class="nav-link">
+                <router-link to="/module" class="nav-link">
                   <i class="fa fa-minus nav-icon"></i>
-                  <p>Category</p>
+                  <p>Module Mgt</p>
                 </router-link>
               </li>
               <li class="nav-item">
