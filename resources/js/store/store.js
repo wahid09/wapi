@@ -2,6 +2,7 @@ export default {
     state: {
         category: [],
         module: [],
+        permission: [],
     },
     getters: {
         categoryList(state) {
@@ -9,6 +10,9 @@ export default {
         },
         moduleList(state) {
             return state.module
+        },
+        permissionList(state) {
+            return state.permission
         }
     },
     actions: {
@@ -22,6 +26,11 @@ export default {
             axios.get('api/v1/module').then((response) => {
                 context.commit('moduleList', response.data.moduleList)
             })
+        },
+        getPermissionList(context) {
+            axios.get('api/v1/permission').then((response) => {
+                context.commit('permissionList', response.data.permissionList)
+            })
         }
     },
     mutations: {
@@ -30,6 +39,9 @@ export default {
         },
         moduleList(state, response) {
             return state.module = response
+        },
+        permissionList(state, response) {
+            return state.permission = response
         }
     }
 }

@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Permission extends Model
 {
     use SoftDeletes;
-    protected $guarded = [];
+    protected $guarded = ['id'];
+
+    public function module()
+    {
+        return $this->belongsTo(Module::class);
+    }
 }

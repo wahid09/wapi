@@ -37,15 +37,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/category" class="nav-link">
+                <router-link to="/module" class="nav-link">
                   <i class="fa fa-minus nav-icon"></i>
-                  <p>Category</p>
+                  <p>Module Mgt</p>
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Profile</p>
+                <router-link to="/permission" class="nav-link">
+                  <i class="fa fa-minus nav-icon"></i>
+                  <p>Permission Mgt</p>
                 </router-link>
               </li>
             </ul>
@@ -61,12 +61,6 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link to="/module" class="nav-link">
-                  <i class="fa fa-minus nav-icon"></i>
-                  <p>Module Mgt</p>
-                </router-link>
-              </li>
               <li class="nav-item">
                 <router-link to="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

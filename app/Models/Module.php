@@ -9,4 +9,9 @@ class Module extends Model
 {
     use SoftDeletes;
     protected $guarded = ['id'];
+
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class);
+    }
 }
