@@ -62,9 +62,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Profile</p>
+                <router-link to="/role" class="nav-link">
+                  <i class="fa fa-minus nav-icon"></i>
+                  <p>Role Mgt</p>
                 </router-link>
               </li>
             </ul>
@@ -73,7 +73,7 @@
           <!-- Settings -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
+              <i class="nav-icon fas fa-cogs cyan"></i>
               <p>
                 Settings
                 <i class="right fas fa-angle-left"></i>

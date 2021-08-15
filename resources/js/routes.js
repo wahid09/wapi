@@ -5,7 +5,7 @@ import categoryEdit from "./components/admin/category/Edit.vue";
 import module from "./components/admin/module/List.vue";
 import moduleAdd from "./components/admin/module/Add.vue";
 import moduleEdit from "./components/admin/module/Edit.vue";
-import permission from "./components/admin/permission/list.vue";
+//import permission from "./components/admin/permission/list.vue";
 import permissionAdd from "./components/admin/permission/Add.vue";
 import permissionEdit from "./components/admin/permission/Edit.vue";
 
@@ -41,7 +41,8 @@ export const routes = [{
     //Permission Route
     {
         path: '/permission',
-        component: permission
+        component: () =>
+            import ( /* webpackChunkName: "permission" */ "./components/admin/permission/List.vue")
     },
     {
         path: '/add_permission',
@@ -50,6 +51,24 @@ export const routes = [{
     {
         path: '/edit_permission/:permissionId',
         component: permissionEdit
+    },
+
+    //Role Route
+
+    {
+        path: '/role',
+        component: () =>
+            import ( /* webpackChunkName: "role" */ "./components/admin/role/List")
+    },
+    {
+        path: '/add_role',
+        component: () =>
+            import ( /* webpackChunkName: "add_role" */ "./components/admin/role/Add.vue")
+    },
+    {
+        path: '/edit_role/:roleId',
+        component: () =>
+            import ( /* webpackChunkName: "edit_role" */ "./components/admin/role/Edit.vue")
     }
 
 ]

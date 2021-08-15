@@ -3,6 +3,7 @@ export default {
         category: [],
         module: [],
         permission: [],
+        role: [],
     },
     getters: {
         categoryList(state) {
@@ -13,6 +14,9 @@ export default {
         },
         permissionList(state) {
             return state.permission
+        },
+        roleList(state) {
+            return state.role
         }
     },
     actions: {
@@ -29,7 +33,12 @@ export default {
         },
         getPermissionList(context) {
             axios.get('api/v1/permission').then((response) => {
-                context.commit('permissionList', response.data.permissionList)
+                context.commit('permissionList', response.data.data)
+            })
+        },
+        getRoleList(context) {
+            axios.get('api/v1/role').then((response) => {
+                context.commit('roleList', response.data.data)
             })
         }
     },
@@ -42,6 +51,9 @@ export default {
         },
         permissionList(state, response) {
             return state.permission = response
+        },
+        roleList(state, response) {
+            return state.role = response
         }
     }
 }

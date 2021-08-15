@@ -114,6 +114,7 @@ small, .small {
       $activeLi=$activeUrl.parents("li.customLiClass:first");
       $activeLi.addClass("menu-open");
 });
+
 </script>
 </body>
 

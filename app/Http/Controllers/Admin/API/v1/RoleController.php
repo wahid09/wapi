@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Http\Resources\Role\RoleCollection;
 use App\Http\Resources\Role\RoleResource;
+use App\Models\Module;
+use Exception;
 use Illuminate\Support\Str;
 
 class RoleController extends Controller
@@ -19,13 +21,20 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roleList = RoleCollection::collection(Role::latest()->get());
-
-        return response()->json([
-            'isSuccess' => true,
-            'message' => 'Response Success',
-            'roleList' => $roleList,
-        ], 200);
+        try {
+            $roleList = RoleCollection::collection(Role::latest()->get());
+            return sendSuccess('Successfully show role list', $roleList, 200);
+        } catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
+    }
+    public function moduleWithPermission(){
+        try {
+            $module = Module::withTrashed()->with('permissions')->get();
+            return sendSuccess('Successfully show role list', $module, 200);
+        } catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
     }
 
     /**

@@ -20,12 +20,12 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissionList = PermissionCollection::collection(Permission::latest()->get());
-        return response()->json([
-            'isSuccess' => true,
-            'message'   => 'response success',
-            'permissionList'=> $permissionList,
-        ], 200);
+        try {
+            $permissionList = PermissionCollection::collection(Permission::latest()->get());
+            return sendSuccess('Successfully show permission list', $permissionList, 200);
+        } catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
     }
 
     /**
@@ -36,17 +36,17 @@ class PermissionController extends Controller
      */
     public function store(PermissionRequest $request)
     {
-        $permission = Permission::create([
+        try {
+            $permission = Permission::create([
             'module_id' => $request['module_id'],
             'name' => $request['name'],
             'slug' => Str::slug($request['name']),
             'isActive' => $request['isActive']==1 ? 1 : 0
         ]);
-        return response()->json([
-            'isSuccess'=> true,
-            'message'  => 'Permission added successfully',
-            'permission'=> $permission,
-        ]);
+        return sendSuccess('Permission added successfully', $permission, 200);
+        } catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
     }
 
     /**

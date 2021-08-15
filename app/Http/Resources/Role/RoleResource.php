@@ -20,7 +20,7 @@ class RoleResource extends JsonResource
             'name_bn' => $this->name_bn,
             'url' => $this->slug,
             'description' => $this->description,
-            'status' => $this->isActive,
+            'isActive' => $this->isActive,
             'isDeleteable' => $this->deleteable == 1 ? "Not Deleteable" : "Deleteable",
             'created' => \Carbon\Carbon::parse($this->created_at)->format('M D Y'),
         ];
