@@ -1,11 +1,11 @@
 <template>
-  <div id="module-list">
-      <section class="content-header">
+    <div id="module-list">
+        <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h3>
-                            <i class="fas fa-sitemap"></i>&nbsp;&nbsp;Category
+                            <i class="fas fa-sitemap"></i>&nbsp;&nbsp;Module
                             management
                         </h3>
                     </div>
@@ -58,23 +58,43 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for = "(moduleList, index) in getAllModule" :key="moduleList.id">
-                                            <td>{{index+1}}</td>
-                                            <td>{{moduleList.name}}</td>
-                                            <td>{{moduleList.name_bn}}</td>
+                                        <tr
+                                            v-for="(moduleList,
+                                            index) in getAllModule"
+                                            :key="moduleList.id"
+                                        >
+                                            <td>{{ index + 1 }}</td>
+                                            <td>{{ moduleList.name }}</td>
+                                            <td>{{ moduleList.name_bn }}</td>
                                             <td v-if="moduleList.status == 1">
-                                            <span class="badge badge-primary">Active</span>
+                                                <span
+                                                    class="badge badge-primary"
+                                                    >Active</span
+                                                >
                                             </td>
                                             <td v-else>
-                                            <span class="badge badge-warning">Inactive</span>
+                                                <span
+                                                    class="badge badge-warning"
+                                                    >Inactive</span
+                                                >
                                             </td>
                                             <td>
-                                                <router-link :to="`/edit_module/${moduleList.id}`" class=""><i
+                                                <router-link
+                                                    :to="
+                                                        `/edit_module/${moduleList.id}`
+                                                    "
+                                                    class=""
+                                                    ><i
                                                         class="fas fa-edit blue"
                                                     ></i
                                                 ></router-link>
                                                 |
-                                                <a @click.prevent="moduleDelete(moduleList.id)"
+                                                <a
+                                                    @click.prevent="
+                                                        moduleDelete(
+                                                            moduleList.id
+                                                        )
+                                                    "
                                                     ><i
                                                         class="fas fa-trash red"
                                                     ></i
@@ -103,59 +123,59 @@
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            category:{},
+    data() {
+        return {
+            category: {}
+        };
+    },
+    mounted() {
+        this.$store.dispatch("getModuleList");
+    },
+    computed: {
+        getAllModule() {
+            return this.$store.getters.moduleList;
         }
     },
-    mounted(){
-		this.$store.dispatch("getModuleList")
-	},
-    computed:{
-        getAllModule(){
-            return this.$store.getters.moduleList
-        }
-    },
-    methods:{
-        moduleDelete(id){
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                        //send request to the server
-                            axios.delete('api/v1/module/'+id).then((response)=>{
-                            this.$store.dispatch("getModuleList")
-                                Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                                )
-                            
-                            }).catch(()=>{
-                                Swal("Failed", "There was something wrong.", "warning");
-                            });
-                        }
-                        
-                    })
-
-                
+    methods: {
+        moduleDelete(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then(result => {
+                if (result.isConfirmed) {
+                    //send request to the server
+                    axios
+                        .delete("api/v1/module/" + id)
+                        .then(response => {
+                            this.$store.dispatch("getModuleList");
+                            Swal.fire(
+                                "Deleted!",
+                                "Your file has been deleted.",
+                                "success"
+                            );
+                        })
+                        .catch(() => {
+                            Swal(
+                                "Failed",
+                                "There was something wrong.",
+                                "warning"
+                            );
+                        });
+                }
+            });
         }
     }
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -125,21 +125,3 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  <script type="text/javascript">
-    $(document).ready(function(){
-
-      var url      = window.location.href;
-
-      var encodedString = btoa(url);
-      encodedString=encodedString.replace("==","");
-      encodedString=encodedString.replace("=","");
-
-      //alert(encodedString);
-      $activeUrl=$("#"+encodedString);
-      $activeUrl.addClass("active");
-
-      $activeLi=$activeUrl.parents("li.customLiClass:first");
-      $activeLi.addClass("menu-open");
-    });
-
-    </script>

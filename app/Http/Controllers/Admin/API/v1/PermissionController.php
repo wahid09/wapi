@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PermissionRequest;
 use App\Http\Resources\Permission\PermissionCollection;
 use App\Http\Resources\Permission\PermissionResource;
+use Exception;
 use Illuminate\Support\Str;
 
 class PermissionController extends Controller
@@ -39,7 +40,7 @@ class PermissionController extends Controller
             'module_id' => $request['module_id'],
             'name' => $request['name'],
             'slug' => Str::slug($request['name']),
-            'isActive' => $request->filled('isActive')==1 ? 1 : 0,
+            'isActive' => $request['isActive']==1 ? 1 : 0
         ]);
         return response()->json([
             'isSuccess'=> true,
@@ -56,12 +57,12 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        $permission = new PermissionResource($permission);
-        return response()->json([
-            'isSuccess' => true,
-            'message'   => 'Response success',
-            'permission'=>$permission,
-        ], 200);
+        try {
+            $permission = new PermissionResource($permission);
+            return sendSuccess('Successfully show permission', $permission, 200);
+        } catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
     }
 
     /**
@@ -73,17 +74,17 @@ class PermissionController extends Controller
      */
     public function update(PermissionRequest $request, Permission $permission)
     {
-        $permission->update([
-            'module_id' => $request['name'],
+        try {
+            $permission->update([
+            'module_id' => $request['module_id'],
             'name' => $request['name'],
             'slug' => Str::slug($request['name']),
-            'isActive' => $request->filled('isActive')==1 ? 1 : 0,
+            'isActive' => $request['isActive']==1 ? 1 : 0
         ]);
-        return response()->json([
-            'isSuccess'=> true,
-            'message'  => 'Permission updated successfully',
-            'permission'=> $permission,
-        ]);
+        return sendSuccess('permission updated successfully', $permission, 200);
+        } catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
     }
 
     /**
@@ -94,10 +95,11 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        $permission->delete();
-        return response()->json([
-            'isSuccess'=> true,
-            'message'  => 'Permission deleted successfully',
-        ]);
+        try {
+            $permission->delete();
+            return sendSuccess('permission deleted successfully', '', 200);
+        } catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
     }
 }

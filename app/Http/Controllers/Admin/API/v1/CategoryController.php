@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin\API\v1;
+namespace App\Http\Controllers\Admin\API\V1;
 
-use App\Models\Module;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ModuleRequest;
-use App\Http\Resources\Module\ModuleResource;
-use App\Http\Resources\Module\ModuleCollection;
-use Exception;
+use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\Category\CategoryResource;
+use App\Http\Resources\Category\CategoryCollection;
+use Illuminate\Support\Str;
 
-class ModuleController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class ModuleController extends Controller
     public function index()
     {
         try {
-            $moduleList = ModuleCollection::collection(Module::latest()->get());
-            return sendSuccess('Successfully get module list', $moduleList, 200);
+            $categoryList = CategoryCollection::collection(Category::latest()->get());
+            return sendSuccess('Successfully get category list', $categoryList, 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
         }
@@ -33,16 +33,18 @@ class ModuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ModuleRequest $request)
+    public function store(CategoryRequest $request)
     {
         try {
-            $module = Module::create([
+            $category = Category::create([
                 'name' => $request['name'],
-                'name_bn'=> $request['name_bn'],
+                'slug' => Str::slug($request['name']),
+                'name_bn' => $request['name_bn'],
+                'description' => $request['description'],
+                'description_bn' => $request['description_bn'],
                 'isActive' => $request->filled('isActive')==1 ? 1 : 0,
             ]);
-
-            return sendSuccess('Module added successfully', $module, 200);
+            return sendSuccess('Category added successful', $category, 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
         }
@@ -54,11 +56,11 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Module $module)
+    public function show(Category $category)
     {
         try {
-            $module = new ModuleResource($module);
-            return sendSuccess('Module show successfully', $module, 200);
+            $category = new CategoryResource($category);
+            return sendSuccess('Successfully show category', $category, 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
         }
@@ -71,16 +73,18 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ModuleRequest $request, Module $module)
+    public function update(CategoryRequest $request, Category $category)
     {
         try {
-            $module->update([
+            $category->update([
                 'name' => $request['name'],
-                'name_bn'=> $request['name_bn'],
-                'isActive' => $request->filled('isActive')==1 ? 1 : 0,
+                'slug' => Str::slug($request['name']),
+                'name_bn' => $request['name_bn'],
+                'description' => $request['description'],
+                'description_bn' => $request['description_bn'],
+                'isActive' => $request->filled('isActive')==1 ? 1 : 0
             ]);
-
-            return sendSuccess('Module updated successfully', $module, 200);
+            return sendSuccess('Category update successful', $category, 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
         }
@@ -92,11 +96,11 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Module $module)
+    public function destroy(Category $category)
     {
         try {
-            $module->delete();
-            return sendSuccess('Module deleted successfully', '', 200);
+            $category->delete();
+            return sendSuccess('Category deleted successfully', '', 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
         }

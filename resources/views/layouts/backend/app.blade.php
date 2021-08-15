@@ -95,7 +95,24 @@ small, .small {
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
   $(document).ready(function() {
-    $('.select').select2();
+    $('.select').select2({
+      placeholder: "Select Module",
+      allowClear: true
+    });
+
+    //Sidebar script
+    var url      = window.location.href;
+
+      var encodedString = btoa(url);
+      encodedString=encodedString.replace("==","");
+      encodedString=encodedString.replace("=","");
+
+      //alert(encodedString);
+      $activeUrl=$("#"+encodedString);
+      $activeUrl.addClass("active");
+
+      $activeLi=$activeUrl.parents("li.customLiClass:first");
+      $activeLi.addClass("menu-open");
 });
 </script>
 </body>

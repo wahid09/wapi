@@ -31,12 +31,13 @@
                                     <div class="form-group">
                                     <label>Module Name</label>
                                     <select class="form-control select" style="width: 100%;" v-model="form.module_id" name="module_id">
+                                        <option></option>
                                         <option v-for="(moduleList, index) in module" :key="moduleList.id" :value="moduleList.id">{{moduleList.name}}</option>
                                     </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Enter email" name="name">
+                                        <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Enter permission" name="name">
                                         <small v-if="form.errors.has('name')" v-html="form.errors.get('name')" class="red"></small>
                                     </div>
                                     <div class="form-group custom-switch">
@@ -85,7 +86,7 @@ export default {
     },
     mounted(){
         axios.get('api/v1/module').then((response)=>{
-            this.module = response.data.moduleList
+            this.module = response.data.data
         })
     },
     methods:{

@@ -30,12 +30,12 @@
                                     <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">Name(English)</label>
-                                        <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Enter email" name="name">
+                                        <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Enter module name in english" name="name">
                                         <small v-if="form.errors.has('name')" v-html="form.errors.get('name')" class="red"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="name_bn">Name(Bangla)</label>
-                                        <input v-model="form.name_bn" type="text" class="form-control" id="name_bn" placeholder="Category Name Bangla">
+                                        <input v-model="form.name_bn" type="text" class="form-control" id="name_bn" placeholder="Enter module name in bangla">
                                         <small v-if="form.errors.has('name_bn')" v-html="form.errors.get('name_bn')" class="red"></small>
                                     </div>
                                     

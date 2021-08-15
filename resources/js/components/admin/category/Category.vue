@@ -62,7 +62,7 @@
                                             <td>{{index+1}}</td>
                                             <td>{{categoryList.name}}</td>
                                             <td>{{categoryList.name_bn}}</td>
-                                            <td v-if="categoryList.isActive == 1">
+                                            <td v-if="categoryList.status == 1">
                                             <span class="badge badge-primary">Active</span>
                                             </td>
                                             <td v-else>

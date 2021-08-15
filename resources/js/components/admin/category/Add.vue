@@ -30,7 +30,7 @@
                                     <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">Name(English)</label>
-                                        <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Enter email" name="name">
+                                        <input v-model="form.name" type="text" class="form-control" id="name" placeholder="Category name in english" name="name">
                                         <small v-if="form.errors.has('name')" v-html="form.errors.get('name')" class="red"></small>
                                     </div>
                                     <div class="form-group">
@@ -96,7 +96,7 @@ export default {
     methods:{
         createCategory(){
             this.$Progress.start()
-            this.form.post('category')
+            this.form.post('api/v1/category')
             .then((response)=>{
                 console.log(response);
                 this.form.reset();

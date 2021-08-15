@@ -81,7 +81,7 @@ export default {
     },
     mounted(){
         axios.get('api/v1/module/'+this.$route.params.moduleId).then((response)=>{
-            this.form.fill(response.data.module)
+            this.form.fill(response.data.data)
         })
     },
     methods:{

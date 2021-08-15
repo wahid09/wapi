@@ -16,9 +16,10 @@ class PermissionResource extends JsonResource
     {
         return [
             'id'     => $this->id,
-            'module_name' => $this->module->name,
+            //'module_name' => $this->module->name,
+            'module_id' => $this->module_id,
             'name'   => $this->name,
-            'status' => $this->isActive,
+            'isActive' => $this->isActive,
             'created'=> \Carbon\Carbon::parse($this->created_at)->format('M D Y'),
             'updated'=> \Carbon\Carbon::parse($this->updated_at)->format('M D Y'),
         ];

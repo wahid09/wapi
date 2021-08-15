@@ -94,14 +94,14 @@ export default {
         }
     },
     mounted(){
-        axios.get('category/'+this.$route.params.categoryId+'/edit').then((response)=>{
-            this.form.fill(response.data.categoryById)
+        axios.get('api/v1/category/'+this.$route.params.categoryId).then((response)=>{
+            this.form.fill(response.data.data)
         })
     },
     methods:{
         updateCategory(){
             this.$Progress.start()
-            this.form.put('category/'+this.$route.params.categoryId)
+            this.form.put('api/v1/category/'+this.$route.params.categoryId)
             .then((response)=>{
                 console.log(response);
                 this.form.reset();

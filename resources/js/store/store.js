@@ -17,14 +17,14 @@ export default {
     },
     actions: {
         getCategoryList(context) {
-            axios.get('category')
+            axios.get('api/v1/category')
                 .then((response) => {
-                    context.commit('categoryList', response.data.categoryList)
+                    context.commit('categoryList', response.data.data)
                 })
         },
         getModuleList(context) {
             axios.get('api/v1/module').then((response) => {
-                context.commit('moduleList', response.data.moduleList)
+                context.commit('moduleList', response.data.data)
             })
         },
         getPermissionList(context) {
