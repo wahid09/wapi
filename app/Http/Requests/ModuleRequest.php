@@ -21,7 +21,7 @@ class ModuleRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|string|min:3|max:25|unique:modules,id',

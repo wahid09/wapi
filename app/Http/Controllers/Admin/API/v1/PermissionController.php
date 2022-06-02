@@ -21,7 +21,7 @@ class PermissionController extends Controller
     public function index()
     {
         try {
-            $permissionList = PermissionCollection::collection(Permission::latest()->get());
+            $permissionList = PermissionCollection::collection(Permission::with('module')->latest()->get());
             return sendSuccess('Successfully show permission list', $permissionList, 200);
         } catch (Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
