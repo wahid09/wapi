@@ -15,7 +15,7 @@ class ModuleController extends Controller
     public function __construct()
     {
         //$this->middleware('guest')->except('logout');
-        $this->middleware('auth:api', ['except' => ['login']]);
+        //$this->middleware('auth:api', ['except' => ['login']]);
     }
     /**
      * Display a listing of the resource.

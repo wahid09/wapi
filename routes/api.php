@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 //Route::middleware('auth:api')->get('/user', 'UserController@AuthRouteAPI');
-
-Route::group(['prefix' => 'v1', 'middleware'=>'api', 'namespace' => 'Admin\Api\v1'], function () {
+Route::group(['prefix' => 'v1', 'namespace' => 'Admin\Api\v1'], function () {
     // Authentication route
     Route::post('login', 'LoginController@login');
+});
+
+Route::group(['prefix' => 'v1', 'middleware'=>'auth.jwt', 'namespace' => 'Admin\Api\v1'], function () {
+    // Authentication route
+    //Route::post('login', 'LoginController@login');
     Route::post('logout', 'LoginController@logout');
     Route::post('refresh', 'LoginController@refresh');
     Route::post('me', 'LoginController@me');
