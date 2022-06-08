@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            
+
                             <div class="card-body">
                                 <table
                                     id="example2"
@@ -135,15 +135,15 @@ export default {
                                 'Your file has been deleted.',
                                 'success'
                                 )
-                            
+
                             }).catch(()=>{
                                 Swal("Failed", "There was something wrong.", "warning");
                             });
                         }
-                        
+
                     })
 
-                
+
         }
     }
 }

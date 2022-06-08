@@ -1,10 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/permission.js": "/permission.js",
-    "/add_permission.js": "/add_permission.js",
     "/add_role.js": "/add_role.js",
     "/edit_role.js": "/edit_role.js",
-    "/role.js": "/role.js",
-    "/edit_permission.js": "/edit_permission.js"
+    "/permission.js": "/permission.js",
+    "/role.js": "/role.js"
 }

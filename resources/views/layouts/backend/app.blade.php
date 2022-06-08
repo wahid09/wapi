@@ -57,7 +57,7 @@ small, .small {
     font-weight: 400;
 }
 .custom-switch {
-    padding-left: 1.5rem; 
+    padding-left: 1.5rem;
 }
 .custom-control {
     position: relative;
@@ -83,7 +83,7 @@ small, .small {
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
+
     <admin-master></admin-master>
   </div>
 
