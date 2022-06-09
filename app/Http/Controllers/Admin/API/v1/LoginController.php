@@ -43,31 +43,15 @@ class LoginController extends Controller
         $this->middleware('auth:api', ['except' => ['login']]);
     }
 
+    /*
+     * Handle a login request to the application.
+     * @param  \Illuminate\Http\Request  $request
+     * @return JWT access token
+     * @throws Request validation errors.
+     */
+
     public function login(Request $request)
     {
-//        $this->validateLogin($request);
-//
-//        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-//        // the login attempts for this application. We'll key this by the username and
-//        // the IP address of the client making these requests into this application.
-//        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-//            $this->hasTooManyLoginAttempts($request)) {
-//            $this->fireLockoutEvent($request);
-//
-//            return $this->sendLockoutResponse($request);
-//        }
-//
-//        if ($this->attemptLogin($request)) {
-//            return $this->sendLoginResponse($request);
-//        }
-//
-//        // If the login attempt was unsuccessful we will increment the number of attempts
-//        // to login and redirect the user back to the login form. Of course, when this
-//        // user surpasses their maximum number of attempts they will get locked out.
-//        $this->incrementLoginAttempts($request);
-//
-//        return $this->sendFailedLoginResponse($request);
-
         $credentials = $request->only('email', 'password');
         $validator = Validator::make($credentials, [
             'email' => 'required|email',
@@ -87,19 +71,6 @@ class LoginController extends Controller
             return sendError('Could not create token.', '', 500);
         }
 
-//        try {
-//            //$this->validateLogin($request);
-//
-//            if ($token = $this->guard()->attempt($credentials)) {
-//                //return $this->respondWithToken($token);
-//                $result = $this->respondWithToken($token);
-//                return sendSuccess('You are logged in successfully', $result, 200);
-//            }
-//        } catch (\Exception $e) {
-//            //return response()->json(['error' => 'Unauthorized'], 401);
-//            return sendError($e->getMessage(), '', 401);
-//        }
-
         $result = $this->respondWithToken($token);
         return sendSuccess('You are logged in successfully', $result, 200);
     }
@@ -115,6 +86,9 @@ class LoginController extends Controller
         }
     }
 
+    /*
+     * Logout user of his session.
+     */
     public function logout()
     {
         $this->guard()->logout();
@@ -134,6 +108,10 @@ class LoginController extends Controller
 //            'expires_in' => $this->guard()->factory()->getTTL() * 60
 //        ]);
 //    }
+    /*
+     * Create a new access token per user request
+     * @return an array
+     */
     protected function respondWithToken($token): array
     {
         return [

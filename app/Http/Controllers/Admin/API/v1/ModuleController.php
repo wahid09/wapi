@@ -47,7 +47,7 @@ class ModuleController extends Controller
                 'isActive' => $request->filled('isActive')==1 ? 1 : 0,
             ]);
 
-            return sendSuccess('Module added successfully', $module, 200);
+            return sendSuccess('Module added successfully', $module, 201);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
         }
