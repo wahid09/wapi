@@ -1,5 +1,6 @@
 require('./bootstrap');
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 window.Vue = require('vue');
 //import { Forn, HasError, AlertError } from 'vform'
 import Form from 'vform'
@@ -57,12 +58,23 @@ import 'v-markdown-editor/dist/v-markdown-editor.css';
 import Editor from 'v-markdown-editor'
 Vue.use(Editor);
 
+//Token check
+
+axios.default.withCredentials = true
+axios.default.baseURL = 'http://127.0.0.1:8000/api/v1'
+const token = localStorage.getItem('token')
+if(token){
+    axios.default.headers.common['Authorization'] = token
+}
 
 //Vue Router
 import VueRouter from 'vue-router'
+Vue.use(VueAxios, axios)
 Vue.use(VueRouter)
 
 import { routes } from './routes'
+import Axios from 'axios';
+import Vue from 'vue';
 const router = new VueRouter({
     //mode: 'history',
     routes // short for `routes: routes`

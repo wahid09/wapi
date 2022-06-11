@@ -8,8 +8,14 @@ import moduleEdit from "./components/admin/module/Edit.vue";
 //import permission from "./components/admin/permission/list.vue";
 import permissionAdd from "./components/admin/permission/Add.vue";
 import permissionEdit from "./components/admin/permission/Edit.vue";
+import login from "./components/admin/login.vue";
 
-export const routes = [{
+export const routes = [
+    {
+        path: '/login',
+        component: login
+    },
+    {
         path: '/',
         component: dashboard
     },

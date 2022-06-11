@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'v1', 'namespace' => 'Admin\Api\v1'], function () {
     // Authentication route
     Route::post('login', 'LoginController@login');
+    Route::ApiResource('module', 'ModuleController');
 });
 
 Route::group(['prefix' => 'v1', 'middleware'=>'auth.jwt', 'namespace' => 'Admin\Api\v1'], function () {
@@ -21,7 +22,7 @@ Route::group(['prefix' => 'v1', 'middleware'=>'auth.jwt', 'namespace' => 'Admin\
     Route::post('me', 'LoginController@me');
 
     // Application route
-    Route::ApiResource('module', 'ModuleController');
+    //Route::ApiResource('module', 'ModuleController');
     Route::ApiResource('permission', 'PermissionController');
     Route::ApiResource('role', 'RoleController');
     Route::ApiResource('category', 'CategoryController');
