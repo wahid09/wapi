@@ -3236,6 +3236,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3270,57 +3277,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      module: [],
+      user: [],
       form: new Form({
-        name: '',
-        name_bn: '',
-        description: '',
-        description_bn: '',
-        isActive: '',
-        permissions: ''
+        email: '',
+        password: ''
       })
     };
   },
-  mounted: function mounted() {
-    var _this = this;
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["login"])), {}, {
+    submit: function submit() {
+      var _this = this;
 
-    axios.get('api/v1/module_with_permission').then(function (response) {
-      _this.module = response.data.data;
-    });
-  },
-  computed: {
-    chunkedItems: function chunkedItems() {
-      return _.chunk(this.module, 8);
-    }
-  },
-  methods: {
-    createCategory: function createCategory() {
-      var _this2 = this;
-
-      this.$Progress.start();
-      this.form.post('api/v1/category').then(function (response) {
-        console.log(response);
-
-        _this2.form.reset();
-
-        _this2.$router.push('/category');
-
-        Toast.fire({
-          icon: 'success',
-          title: 'Category added successfully'
-        });
-
-        _this2.$Progress.finish();
-      })["catch"](function (e) {
-        _this2.$Progress.fail();
-
-        console.log(e);
+      this.$store.dispatch('login', this.form).then(function () {
+        return _this.$router.push('/');
+      })["catch"](function (err) {
+        return console.log(err);
       });
-    }
-  }
+    } // createCategory(){
+    //     this.$Progress.start()
+    //     this.form.post('api/v1/category')
+    //     .then((response)=>{
+    //         console.log(response);
+    //         this.form.reset();
+    //         this.$router.push('/category');
+    //         Toast.fire({
+    //             icon: 'success',
+    //             title: 'Category added successfully'
+    //         })
+    //         this.$Progress.finish()
+    //     }).catch((e)=> {
+    //         this.$Progress.fail()
+    //         console.log(e);
+    //     });
+    // }
+
+  })
 });
 
 /***/ }),
@@ -67911,76 +67908,128 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { attrs: { id: "category" } }, [
+    _c("div", { staticClass: "global-container" }, [
+      _c("div", { staticClass: "card login-form" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("h3", { staticClass: "card-title text-center" }, [
+            _vm._v("Log in to Codepen")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-text" }, [
+            _c("form", [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+                  _vm._v("Email address")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.email,
+                      expression: "form.email"
+                    }
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  attrs: {
+                    type: "email",
+                    id: "exampleInputEmail1",
+                    "aria-describedby": "emailHelp"
+                  },
+                  domProps: { value: _vm.form.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "email", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.form.errors.has("email")
+                  ? _c("small", {
+                      staticClass: "red",
+                      domProps: {
+                        innerHTML: _vm._s(_vm.form.errors.get("email"))
+                      }
+                    })
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+                  _vm._v("Password")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticStyle: { float: "right", "font-size": "12px" },
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("Forgot password?")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.password,
+                      expression: "form.password"
+                    }
+                  ],
+                  staticClass: "form-control form-control-sm",
+                  attrs: { type: "password", id: "exampleInputPassword1" },
+                  domProps: { value: _vm.form.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "password", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.form.errors.has("password")
+                  ? _c("small", {
+                      staticClass: "red",
+                      domProps: {
+                        innerHTML: _vm._s(_vm.form.errors.get("password"))
+                      }
+                    })
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-block",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Sign in")]
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "category" } }, [
-      _c("div", { staticClass: "global-container" }, [
-        _c("div", { staticClass: "card login-form" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("h3", { staticClass: "card-title text-center" }, [
-              _vm._v("Log in to Codepen")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-text" }, [
-              _c("form", [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-                    _vm._v("Email address")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control form-control-sm",
-                    attrs: {
-                      type: "email",
-                      id: "exampleInputEmail1",
-                      "aria-describedby": "emailHelp"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-                    _vm._v("Password")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticStyle: { float: "right", "font-size": "12px" },
-                      attrs: { href: "#" }
-                    },
-                    [_vm._v("Forgot password?")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control form-control-sm",
-                    attrs: { type: "password", id: "exampleInputPassword1" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary btn-block",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("Sign in")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "sign-up" }, [
-                  _vm._v("\n                        Don't have an account? "),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Create One")])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "sign-up" }, [
+      _vm._v("\n                        Don't have an account? "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Create One")])
     ])
   }
 ]
@@ -86081,6 +86130,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_10__["routes"] // short for `routes: routes`
 
 });
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('login', __webpack_require__(/*! ./components/admin/login.vue */ "./resources/js/components/admin/login.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('admin-master', __webpack_require__(/*! ./components/admin/AdminMaster.vue */ "./resources/js/components/admin/AdminMaster.vue")["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_11___default.a({
   el: '#app',

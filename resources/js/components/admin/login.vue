@@ -11,12 +11,14 @@
                         <!-- to error: add class "has-danger" -->
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="email" v-model="form.email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <small v-if="form.errors.has('email')" v-html="form.errors.get('email')" class="red"></small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
                             <a href="#" style="float:right;font-size:12px;">Forgot password?</a>
-                            <input type="password" class="form-control form-control-sm" id="exampleInputPassword1">
+                            <input type="password" v-model="form.password" class="form-control form-control-sm" id="exampleInputPassword1">
+                            <small v-if="form.errors.has('password')" v-html="form.errors.get('password')" class="red"></small>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Sign in</button>
                         
@@ -33,49 +35,42 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
     data(){
         return{
-            module:[],
+            user:[],
             form: new Form({
-                name: '',
-                name_bn: '',
-                description: '',
-                description_bn: '',
-                isActive: '',
-                permissions:'',
+                email: '',
+                password: '',
             })
         }
     },
-    mounted(){
-        axios.get('api/v1/module_with_permission').then((response)=>{
-            this.module = response.data.data
-        })
-    },
-    computed: {
-        chunkedItems(){
-            return _.chunk(this.module,8)
-        }
-    },
     methods:{
-        createCategory(){
-            this.$Progress.start()
-            this.form.post('api/v1/category')
-            .then((response)=>{
-                console.log(response);
-                this.form.reset();
-                this.$router.push('/category');
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Category added successfully'
-                })
-                this.$Progress.finish()
-            }).catch((e)=> {
-                this.$Progress.fail()
-                console.log(e);
-            });
+        ...mapActions(["login"]),
+        submit: function(){
+            this.$store.dispatch('login', this.form)
+            .then(()=>this.$router.push('/'))
+            .catch(err => console.log(err))
+        },
+        // createCategory(){
+        //     this.$Progress.start()
+        //     this.form.post('api/v1/category')
+        //     .then((response)=>{
+        //         console.log(response);
+        //         this.form.reset();
+        //         this.$router.push('/category');
+        //         Toast.fire({
+        //             icon: 'success',
+        //             title: 'Category added successfully'
+        //         })
+        //         this.$Progress.finish()
+        //     }).catch((e)=> {
+        //         this.$Progress.fail()
+        //         console.log(e);
+        //     });
             
-        }
+        // }
     }
 };
 </script>
