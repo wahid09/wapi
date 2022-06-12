@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Http\Controllers\Admin\API\V1;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\{{modelName}}Request;
+use Exception;
+use App\Models\{{modelName}};
+
+class {{modelName}}Controller extends Controller
+{
+    public function index()
+    {
+        try{
+            ${{modelNamePluralLowerCase}} = {{modelName}}::latest()->get();
+            return sendSuccess('Successfully show {{modelName}} list', ${{modelNamePluralLowerCase}}, 200);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
+    }
+
+    public function store({{modelName}}Request $request)
+    {
+        try{
+            ${{modelNameSingularLowerCase}} = {{modelName}}::create($request->all());
+            return sendSuccess('{{modelName}} added successfully', ${{modelNameSingularLowerCase}}, 200);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
+        
+    }
+
+    public function show($id)
+    {
+        try{
+            ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($id);
+            return sendSuccess('Successfully show {{modelName}}', ${{modelNameSingularLowerCase}}, 200);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
+        
+    }
+
+    public function update({{modelName}}Request $request, $id)
+    {
+        try{
+            ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($id);
+            ${{modelNameSingularLowerCase}}->update($request->all());
+
+            return sendSuccess('{{modelName}} updated successfully', ${{modelNameSingularLowerCase}}, 200);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
+        
+    }
+
+    public function destroy($id)
+    {
+        try{
+            {{modelName}}::destroy($id);
+            return sendSuccess('{{modelName}} deleted successfully', '', 204);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
+    }
+}

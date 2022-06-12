@@ -14,7 +14,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Admin\Api\v1'], function () {
     Route::ApiResource('module', 'ModuleController');
 });
 
-Route::group(['prefix' => 'v1', 'middleware'=>'auth.jwt', 'namespace' => 'Admin\Api\v1'], function () {
+Route::group(['prefix' => 'v1', 'middleware' => 'auth.jwt', 'namespace' => 'Admin\Api\v1'], function () {
     // Authentication route
     //Route::post('login', 'LoginController@login');
     Route::post('logout', 'LoginController@logout');
@@ -27,6 +27,5 @@ Route::group(['prefix' => 'v1', 'middleware'=>'auth.jwt', 'namespace' => 'Admin\
     Route::ApiResource('role', 'RoleController');
     Route::ApiResource('category', 'CategoryController');
     Route::get('module_with_permission', 'RoleController@moduleWithPermission');
-});
-
-
+    Route::ApiResource('products', 'ProductController');
+});Route::ApiResource('posts', 'PostController');
