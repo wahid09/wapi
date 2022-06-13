@@ -28,4 +28,4 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth.jwt', 'namespace' => 'Admi
     Route::ApiResource('category', 'CategoryController');
     Route::get('module_with_permission', 'RoleController@moduleWithPermission');
     Route::ApiResource('products', 'ProductController');
-});Route::ApiResource('posts', 'PostController');
+});Route::ApiResource('posts', 'PostController');Route::ApiResource('comments', 'CommentController');

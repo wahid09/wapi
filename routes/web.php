@@ -26,6 +26,3 @@ use Illuminate\Support\Facades\Route;
 //
 //
 //Route::get('{path}', 'HomeController@index');
-
-
-
