@@ -79,7 +79,7 @@ const router = new VueRouter({
     //mode: 'history',
     routes // short for `routes: routes`
 })
-
+Vue.component('login', require('./components/admin/login.vue').default);
 Vue.component('admin-master', require('./components/admin/AdminMaster.vue').default);
 
 
