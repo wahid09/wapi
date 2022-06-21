@@ -3,7 +3,7 @@
         <div class="global-container">
             <div class="card login-form">
             <div class="card-body">
-                <h3 class="card-title text-center">Log in to Codepen</h3>
+                <h3 class="card-title text-center">Log in to start your session</h3>
                 <div class="card-text">
                     <!--
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
@@ -21,7 +21,7 @@
                             <!-- <small v-if="form.errors.has('password')" v-html="form.errors.get('password')" class="red"></small> -->
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                        
+
                         <div class="sign-up">
                             Don't have an account? <a href="#">Create One</a>
                         </div>
@@ -73,15 +73,15 @@ export default {
         //         this.$Progress.fail()
         //         console.log(e);
         //     });
-            
+
         // }
     }
 };
 </script>
 
 <style>
-html,body { 
-	height: 100%; 
+html,body {
+	height: 100%;
 }
 
 .global-container{
@@ -106,7 +106,7 @@ form{
 }
 
 
-.login-form{ 
+.login-form{
 	width:330px;
 	margin:20px;
 }

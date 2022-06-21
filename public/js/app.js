@@ -10447,7 +10447,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nhtml,body { \r\n\theight: 100%;\n}\n.global-container{\r\n\theight:100%;\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tjustify-content: center;\r\n\tbackground-color: #f5f5f5;\n}\nform{\r\n\tpadding-top: 10px;\r\n\tfont-size: 14px;\r\n\tmargin-top: 30px;\n}\n.card-title{ font-weight:300;\n}\n.btn{\r\n\tfont-size: 14px;\r\n\tmargin-top:20px;\n}\n.login-form{ \r\n\twidth:330px;\r\n\tmargin:20px;\n}\n.sign-up{\r\n\ttext-align:center;\r\n\tpadding:20px 0 0;\n}\n.alert{\r\n\tmargin-bottom:-30px;\r\n\tfont-size: 13px;\r\n\tmargin-top:20px;\n}\r\n", ""]);
+exports.push([module.i, "\nhtml,body {\n\theight: 100%;\n}\n.global-container{\n\theight:100%;\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tbackground-color: #f5f5f5;\n}\nform{\n\tpadding-top: 10px;\n\tfont-size: 14px;\n\tmargin-top: 30px;\n}\n.card-title{ font-weight:300;\n}\n.btn{\n\tfont-size: 14px;\n\tmargin-top:20px;\n}\n.login-form{\n\twidth:330px;\n\tmargin:20px;\n}\n.sign-up{\n\ttext-align:center;\n\tpadding:20px 0 0;\n}\n.alert{\n\tmargin-bottom:-30px;\n\tfont-size: 13px;\n\tmargin-top:20px;\n}\n", ""]);
 
 // exports
 
@@ -67917,7 +67917,7 @@ var render = function() {
       _c("div", { staticClass: "card login-form" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("h3", { staticClass: "card-title text-center" }, [
-            _vm._v("Log in to Codepen")
+            _vm._v("Log in to start your session")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-text" }, [
