@@ -9,6 +9,7 @@ use App\Http\Requests\ModuleRequest;
 use App\Http\Resources\Module\ModuleResource;
 use App\Http\Resources\Module\ModuleCollection;
 use Exception;
+use Symfony\Component\HttpFoundation\Response;
 
 class ModuleController extends Controller
 {
@@ -25,7 +26,7 @@ class ModuleController extends Controller
     public function index()
     {
         try {
-            $moduleList = ModuleCollection::collection(Module::latest()->get());
+            $moduleList = ModuleCollection::collection(Module::latest()->paginate(10));
             return sendSuccess('Successfully get module list', $moduleList, 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
@@ -79,14 +80,14 @@ class ModuleController extends Controller
     {
         try {
             $module->update([
-                'name' => $request['name'],
-                'name_bn'=> $request['name_bn'],
+                'name' => $request->name,
+                'name_bn'=> $request->name_bn,
                 'isActive' => $request->filled('isActive')==1 ? 1 : 0,
             ]);
 
             return sendSuccess('Module updated successfully', $module, 200);
         } catch (\Exception $e) {
-            return sendError($e->getMessage(), '', $e->getCode());
+            return sendError($e->getMessage(), '', 500);
         }
     }
 
@@ -100,7 +101,7 @@ class ModuleController extends Controller
     {
         try {
             $module->delete();
-            return sendSuccess('Module deleted successfully', '', 200);
+            return sendSuccess('Module deleted successfully', '', Response::HTTP_NO_CONTENT);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
         }

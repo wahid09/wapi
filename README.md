@@ -1,11 +1,5 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# Wapi - Zero Config API Boilerplate with Laravel & JWT
+![PHP 8.0 Tests](https://img.shields.io/github/workflow/status/hasinhayder/hydra/PHP%208.0%20Tests?label=PHP%208.0) ![PHP 8.1 Tests](https://img.shields.io/github/workflow/status/hasinhayder/hydra/PHP%208.1%20Tests?label=PHP%208.1) [![CircleCI](https://circleci.com/gh/hasinhayder/hydra/tree/master.svg?style=svg)](https://circleci.com/gh/hasinhayder/hydra/tree/master) ![GitHub](https://img.shields.io/github/license/hasinhayder/hydra?label=License&style=flat-square)
 
 ## About Laravel
 

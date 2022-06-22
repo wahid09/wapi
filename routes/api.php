@@ -22,7 +22,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth.jwt', 'namespace' => 'Admi
     Route::post('me', 'LoginController@me');
 
     // Application route
-    //Route::ApiResource('module', 'ModuleController');
+    Route::ApiResource('module', 'ModuleController');
     Route::ApiResource('permission', 'PermissionController');
     Route::ApiResource('role', 'RoleController');
     Route::ApiResource('category', 'CategoryController');
