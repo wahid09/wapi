@@ -76,13 +76,13 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ModuleRequest $request, Module $module)
+    public function update(Request $request, Module $module)
     {
         try {
             $module->update([
                 'name' => $request->name,
                 'name_bn'=> $request->name_bn,
-                'isActive' => $request->filled('isActive')==1 ? 1 : 0,
+                'isActive' => $request->isActive
             ]);
 
             return sendSuccess('Module updated successfully', $module, 200);
