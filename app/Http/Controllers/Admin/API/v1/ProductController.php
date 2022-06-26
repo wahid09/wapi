@@ -4,43 +4,63 @@ namespace App\Http\Controllers\Admin\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use Exception;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->get();
-
-        return response()->json($products, 201);
+        try{
+            $products = Product::latest()->get();
+            return sendSuccess('Successfully show Product list', $products, 200);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
     }
 
     public function store(ProductRequest $request)
     {
-        $product = Product::create($request->all());
+        try{
+            $product = Product::create($request->all());
+            return sendSuccess('Product added successfully', $product, 200);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
 
-        return response()->json($product, 201);
     }
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
+        try{
+            $product = Product::findOrFail($id);
+            return sendSuccess('Successfully show Product', $product, 200);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
 
-        return response()->json($product);
     }
 
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        $product = Product::findOrFail($id);
-        $product->update($request->all());
+        try{
+            //$product = Product::findOrFail($id);
+            $product->update($request->all());
 
-        return response()->json($product, 200);
+            return sendSuccess('Product updated successfully', $product, 200);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
+
     }
 
     public function destroy($id)
     {
-        Product::destroy($id);
-
-        return response()->json(null, 204);
+        try{
+            Product::destroy($id);
+            return sendSuccess('Product deleted successfully', '', 204);
+        }catch (Exception $e) {
+            return sendError($e->getMessage(), '', $e->getCode());
+        }
     }
 }

@@ -1,5 +1,5 @@
 # Wapi - Zero Config API Boilerplate with Laravel & JWT
-![PHP 8.0 Tests](https://img.shields.io/github/workflow/status/hasinhayder/hydra/PHP%208.0%20Tests?label=PHP%208.0) ![PHP 8.1 Tests](https://img.shields.io/github/workflow/status/hasinhayder/hydra/PHP%208.1%20Tests?label=PHP%208.1) [![CircleCI](https://circleci.com/gh/hasinhayder/hydra/tree/master.svg?style=svg)](https://circleci.com/gh/hasinhayder/hydra/tree/master) ![GitHub](https://img.shields.io/github/license/hasinhayder/hydra?label=License&style=flat-square)
+
 
 ## About Laravel
 

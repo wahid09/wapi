@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\API\v1;
 
+use App\Http\Resources\Module\NewModuleCollection;
 use App\Models\Module;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,8 @@ class ModuleController extends Controller
     public function index()
     {
         try {
-            $moduleList = ModuleCollection::collection(Module::latest()->paginate(10));
+            //$moduleList = ModuleCollection::collection(Module::latest()->paginate(3));
+            $moduleList = new NewModuleCollection(Module::latest()->paginate(3));
             return sendSuccess('Successfully get module list', $moduleList, 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
@@ -79,11 +81,7 @@ class ModuleController extends Controller
     public function update(ModuleRequest $request, Module $module)
     {
         try {
-            $module->update([
-                'name' => $request->name,
-                'name_bn'=> $request->name_bn,
-                'isActive' => $request->filled('isActive')==1 ? 1 : 0,
-            ]);
+            $module->update($request->all());
 
             return sendSuccess('Module updated successfully', $module, 200);
         } catch (\Exception $e) {

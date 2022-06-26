@@ -20,6 +20,9 @@ class ModuleCollection extends JsonResource
              'name_bn' => $this->name_bn,
              'status'=>$this->isActive,
              'created' => \Carbon\Carbon::parse($this->created_at)->format('M D Y'),
+            'href' => [
+                'link' => route('module.show', $this->id)
+            ]
         ];
     }
 }

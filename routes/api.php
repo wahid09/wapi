@@ -27,5 +27,4 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth.jwt', 'namespace' => 'Admi
     Route::ApiResource('role', 'RoleController');
     Route::ApiResource('category', 'CategoryController');
     Route::get('module_with_permission', 'RoleController@moduleWithPermission');
-    Route::ApiResource('products', 'ProductController');
 });
