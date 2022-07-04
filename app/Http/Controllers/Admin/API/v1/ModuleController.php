@@ -27,8 +27,8 @@ class ModuleController extends Controller
     public function index()
     {
         try {
-            //$moduleList = ModuleCollection::collection(Module::latest()->paginate(3));
-            $moduleList = new NewModuleCollection(Module::latest()->paginate(3));
+            $moduleList = ModuleCollection::collection(Module::latest()->paginate(3));
+            //$moduleList = new NewModuleCollection(Module::latest()->paginate(3));
             return sendSuccess('Successfully get module list', $moduleList, 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', $e->getCode());
@@ -81,16 +81,11 @@ class ModuleController extends Controller
     public function update(Request $request, Module $module)
     {
         try {
-<<<<<<< HEAD
-            $module->update($request->all());
-=======
             $module->update([
                 'name' => $request->name,
                 'name_bn'=> $request->name_bn,
                 'isActive' => $request->isActive
             ]);
->>>>>>> c6fcd34b875471f1b8c44c759e4621f97f1583c0
-
             return sendSuccess('Module updated successfully', $module, 200);
         } catch (\Exception $e) {
             return sendError($e->getMessage(), '', 500);

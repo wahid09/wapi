@@ -22,5 +22,4 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@showLoginFrom')->name('login');
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::resource('category', 'CategoryController');
-
-Route::get('{path}', 'HomeController@index');
+Route::get('modules', 'Admin\API\v1\ModuleController@getMod');
