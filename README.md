@@ -1,9 +1,9 @@
 # Wapi - Zero Config API Boilerplate with Laravel & JWT
 
 
-## About Laravel
+## About Wapi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Wapi is a zero-config laravel API boilerplate with JWT and the amazing thing is it is also a CRUD generator.
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
